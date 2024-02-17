@@ -1,12 +1,14 @@
 {
-    "rewrites": [
+    "version": 2,
+    "functions": {
+        "api": {
+            "handler": "src/app/index.py"
+        }
+    },
+    "routes": [
         {
-            "source": "/api/(.*)",
-            "destination": "/src/api/routes.py"
-        },
-        {
-            "source": "/(.*)",
-            "destination": "/src/app/index.py"
+            "src": "/(.*)",
+            "dest": "src/app/api/routes.py"
         }
     ]
 }
