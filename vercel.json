@@ -1,8 +1,8 @@
 {
     "rewrites": [
         {
-            "source": "/api/(.*)",
-            "destination": "src/app/index"
+            "source": "/(.*)",
+            "destination": "src/app/index.py"
         }
     ]
 }
