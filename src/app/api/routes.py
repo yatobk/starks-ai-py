@@ -13,6 +13,10 @@ class InputData(BaseModel):
     input: str
     memoryKey: str
 
+@app.route('/')
+def homePage():
+    return '<h1>Hello, World!</h1>'
+
 @app.route('/api/chat', methods=['POST'])
 def chat():
     try:
