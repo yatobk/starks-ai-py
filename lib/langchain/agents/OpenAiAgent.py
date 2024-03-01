@@ -12,6 +12,7 @@ from lib.utils.consts import llm_model_name
 from lib.langchain.memory.zepMemory import zepMemory
 from lib.langchain.tools.passwordGenerator import PasswordGenerator
 from lib.langchain.prompts import animePrompt
+from lib.utils.answerSplitter import split_text
     
 def createAgent(userInput: str, memoryKey: str):
     llm = ChatOpenAI(
@@ -70,7 +71,8 @@ def main():
         exit(1)
 
 def answer(userInput: str, memoryKey: str):
-    return createAgent(userInput, memoryKey)['output']
+    ai_answer = createAgent(userInput, memoryKey)['output']
+    return split_text(ai_answer)
 
 if __name__ == "__main__":
     print(main())

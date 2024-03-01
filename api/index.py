@@ -25,9 +25,12 @@ def chat():
         user_input = data.input
         memory_key = data.memoryKey
 
-        Ai_answer = answer(userInput=user_input, memoryKey=memory_key)
+        Ai_answers = answer(userInput=user_input, memoryKey=memory_key)
         
-        return jsonify({ 'status': 'success', 'text': Ai_answer })
+        return jsonify({ 'status': 'success', 'text': Ai_answers })
     
     except ValidationError as e:
         return jsonify( {'status': 'error', 'message': str(e)} ), 400
+
+if __name__ == "__main__":
+	app.run(debug=True)
