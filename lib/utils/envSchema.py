@@ -5,14 +5,12 @@ class EnvConfig(BaseModel):
     OPENAI_API_KEY: str = Field(min_lenght=1)
     ZEP_BASE_URL: str = Field(min_lenght=1)
     ZEP_API_KEY: str = Field(min_lenght=1)
-    FOO: str = Field(min_lenght=1)
 
 try:
     env = EnvConfig(
         OPENAI_API_KEY=os.getenv("OPENAI_API_KEY"),
         ZEP_BASE_URL=os.getenv("ZEP_BASE_URL"),
-        ZEP_API_KEY=os.getenv("ZEP_API_KEY"),
-        FOO=os.getenv("FOO")
+        ZEP_API_KEY=os.getenv("ZEP_API_KEY")
     )
 
 except KeyError as e:

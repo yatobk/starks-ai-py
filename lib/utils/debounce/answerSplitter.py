@@ -7,5 +7,4 @@ def split_text(text):
     messages = toSplit.split('\n\n')
     messages = [message.strip() for message in messages if message.strip()]
 
-    ret = answer_messages(messages)
-    return ret
+    return answer_messages(messages)

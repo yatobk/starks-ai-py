@@ -4,4 +4,7 @@
 #venv
 venv
 
+#tmp folder
+tmp
+
 __pycache__

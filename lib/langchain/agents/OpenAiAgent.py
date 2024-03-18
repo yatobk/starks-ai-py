@@ -3,22 +3,23 @@ from langchain_openai import ChatOpenAI
 #from langchain.chains import LLMMathChain
 from langchain.agents import AgentExecutor, create_openai_functions_agent
 from langchain_core.prompts import ChatPromptTemplate, MessagesPlaceholder
-from os.path import dirname, abspath
 import sys
-lib_path = abspath(dirname(dirname(__file__))) + '/lib'
-sys.path.insert(0, lib_path)
+import os
+sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..', '..', '..')))
 
-from lib.utils.consts import llm_model_name
+from lib.utils.ai.model import llm_model_name
 from lib.langchain.memory.zepMemory import zepMemory
 from lib.langchain.tools.passwordGenerator import PasswordGenerator
 from lib.langchain.prompts import animePrompt
-from lib.utils.answerSplitter import split_text
+from lib.utils.debounce.answerSplitter import split_text
     
 def createAgent(userInput: str, memoryKey: str):
     llm = ChatOpenAI(
         model=llm_model_name,
-        max_tokens=150,
-        temperature=0.7
+        max_tokens=300,
+        temperature=0.8,
+        tiktoken_model_name="cl100k_base",
+        tags=["test1@nutri", "test2@nutri"]
     )
 
     #llm_math = LLMMathChain(llm=llm)
@@ -56,6 +57,11 @@ def createAgent(userInput: str, memoryKey: str):
     )    
     return response
 
+def answer(userInput: str, memoryKey: str):
+    ai_answer = createAgent(userInput, memoryKey)['output']
+    return split_text(ai_answer)
+
+# DEBUG ONLY
 def main():
     with get_openai_callback() as cb:
         while True:
@@ -64,15 +70,11 @@ def main():
                 print("bye")
                 break
             else: 
-                res = createAgent(userInput)
+                res = createAgent(userInput=userInput, memoryKey="hello38202389829")
                 print(res['output'])
                 
                 #print(cb)
         exit(1)
-
-def answer(userInput: str, memoryKey: str):
-    ai_answer = createAgent(userInput, memoryKey)['output']
-    return split_text(ai_answer)
 
 if __name__ == "__main__":
     print(main())
