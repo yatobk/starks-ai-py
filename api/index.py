@@ -8,6 +8,9 @@ from lib.utils.debounce.user_data import user_messages
 from lib.evolution.routes.main import Evolution
 from lib.evolution.webhook.main import process_webhook
 from threading import Thread
+from dotenv import load_dotenv
+
+load_dotenv()
 
 app = Flask(__name__)
 
