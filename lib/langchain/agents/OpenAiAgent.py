@@ -3,10 +3,6 @@ from langchain_openai import ChatOpenAI
 #from langchain.chains import LLMMathChain
 from langchain.agents import AgentExecutor, create_openai_functions_agent
 from langchain_core.prompts import ChatPromptTemplate, MessagesPlaceholder
-import sys
-import os
-sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..', '..', '..')))
-
 from lib.utils.ai.model import llm_model_name
 from lib.langchain.memory.zepMemory import zepMemory
 from lib.langchain.tools.passwordGenerator import PasswordGenerator

@@ -2,7 +2,9 @@ from flask import Flask, request, jsonify
 from pydantic import BaseModel, ValidationError
 import sys
 import os
-sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..' )))
+from os.path import dirname, abspath
+lib_path = abspath(dirname(dirname(__file__))) + '/lib'
+sys.path.insert(0, lib_path)
 from lib.utils.debounce.main import Debounce
 from lib.utils.debounce.user_data import user_messages
 from lib.evolution.routes.main import Evolution
